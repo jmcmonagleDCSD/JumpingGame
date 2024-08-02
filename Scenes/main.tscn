@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://dsy710g5frwhy"]
+
+[ext_resource type="Texture2D" uid="uid://dnyobmimqel7m" path="res://Assets/Background/Blue.png" id="1_8qcqb"]
+[ext_resource type="Texture2D" uid="uid://c8x7fibnhui0t" path="res://Assets/Background/Green.png" id="2_8uiov"]
+[ext_resource type="PackedScene" uid="uid://do40awaf2er3i" path="res://Scenes/player.tscn" id="3_8emla"]
+[ext_resource type="PackedScene" uid="uid://3uwm8x21iytn" path="res://Scenes/enemy_spawner.tscn" id="4_i021f"]
+[ext_resource type="PackedScene" uid="uid://bho8lmmkxpyqy" path="res://Scenes/enemy_rino.tscn" id="5_eakj1"]
+[ext_resource type="PackedScene" uid="uid://fvpdumg3bsuq" path="res://Scenes/enemy_bird.tscn" id="6_lnoir"]
+[ext_resource type="PackedScene" uid="uid://cuolul1y70mf5" path="res://Scenes/score.tscn" id="7_0yrej"]
+[ext_resource type="PackedScene" uid="uid://dppnbrx2sbhvs" path="res://Scenes/game_over.tscn" id="8_h2mm3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ys1js"]
+size = Vector2(722, 62)
+
+[node name="Main" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -22.0
+offset_top = -15.0
+offset_right = 655.0
+offset_bottom = 380.0
+texture = ExtResource("1_8qcqb")
+stretch_mode = 1
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+position = Vector2(9, 346)
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(317.5, 0)
+scale = Vector2(10.9219, 1)
+texture = ExtResource("2_8uiov")
+region_enabled = true
+region_rect = Rect2(0, 0, 66, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(318, -1)
+shape = SubResource("RectangleShape2D_ys1js")
+
+[node name="Player" parent="." instance=ExtResource("3_8emla")]
+position = Vector2(45, 248)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("4_i021f")]
+position = Vector2(3, 35)
+enemy_scene = ExtResource("5_eakj1")
+
+[node name="EnemySpawner2" parent="." instance=ExtResource("4_i021f")]
+position = Vector2(102, -155)
+enemy_scene = ExtResource("6_lnoir")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Score" parent="CanvasLayer" instance=ExtResource("7_0yrej")]
+
+[node name="GameOver" parent="CanvasLayer" instance=ExtResource("8_h2mm3")]

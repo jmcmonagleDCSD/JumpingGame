@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://bho8lmmkxpyqy"]
+
+[ext_resource type="Texture2D" uid="uid://3elm6cvym5c0" path="res://Assets/Enemies/Rino/Run (52x34).png" id="1_3yg65"]
+[ext_resource type="Script" path="res://Scenes/enemy_rino.gd" id="1_564iw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nahk7"]
+atlas = ExtResource("1_3yg65")
+region = Rect2(0, 0, 52, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_joill"]
+atlas = ExtResource("1_3yg65")
+region = Rect2(52, 0, 52, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nwcb"]
+atlas = ExtResource("1_3yg65")
+region = Rect2(104, 0, 52, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nc83"]
+atlas = ExtResource("1_3yg65")
+region = Rect2(156, 0, 52, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2j5n"]
+atlas = ExtResource("1_3yg65")
+region = Rect2(208, 0, 52, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24aj3"]
+atlas = ExtResource("1_3yg65")
+region = Rect2(260, 0, 52, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hqgym"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nahk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_joill")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nwcb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nc83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2j5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24aj3")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 15.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xfop7"]
+radius = 20.0
+height = 68.0
+
+[node name="EnemyRino" type="Area2D" groups=["enemy"]]
+script = ExtResource("1_564iw")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -24)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_hqgym")
+animation = &"Run"
+autoplay = "Run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -21)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xfop7")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(77, -20)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

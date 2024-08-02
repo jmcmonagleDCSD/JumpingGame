@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8fwo51jxd5se"]
+
+[ext_resource type="Texture2D" uid="uid://d3r761komrd7m" path="res://Assets/Background/Purple.png" id="1_7b5ou"]
+[ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1_wvbcn"]
+[ext_resource type="LabelSettings" uid="uid://c30y8jgdd2tum" path="res://Themes/score.tres" id="2_kkn77"]
+[ext_resource type="LabelSettings" uid="uid://bhgug1etjvctc" path="res://Scenes/game_over_large.tres" id="3_mqu4u"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wvbcn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("1_7b5ou")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 24
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "HighScore:"
+label_settings = ExtResource("2_kkn77")
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "000"
+label_settings = ExtResource("2_kkn77")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.0
+offset_top = -50.0
+offset_right = 157.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Frog Jumper"
+label_settings = ExtResource("3_mqu4u")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Press Space to Start/ Jump"
+label_settings = ExtResource("2_kkn77")
+horizontal_alignment = 1
+vertical_alignment = 1
